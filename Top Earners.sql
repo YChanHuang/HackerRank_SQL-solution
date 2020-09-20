@@ -3,6 +3,6 @@
 SELECT salary * months as earning,
        count(*)
 FROM employee
-group by(earning)
-order by(earning) desc
-limit 1
+GROUP BY (earning) -- GROUP BY the
+ORDER BY (earning) DESC -- order from the highest to the lowest
+LIMIT 1  -- present the top 1 earner
