@@ -1,0 +1,138 @@
+
+# 
+
+SELECT city.name 
+FROM city
+JOIN country ON CITY.CountryCode = COUNTRY.Code
+WHERE country.continent = 'Africa' 
+
+
+
+#Given the CITY and COUNTRY tables, query the names of all the continents (COUNTRY.Continent) and their respective average city populations (CITY.Population) rounded down to the nearest integer.
+
+
+SELECT COUNTRY.Continent ,CAST(AVG(CITY.Population)AS decimal(14, 0))
+FROM COUNTRY 
+JOIN CITY
+ON CITY.CountryCode = COUNTRY.Code 
+GROUP BY COUNTRY.continent 
+
+
+-- SET WHILE loop parameter
+
+DECLARE 
+@Num INT = 20 
+While @Num > 0
+BEGIN 
+    PRINT REPLICATE('* ', @Num)
+    SET @Num = @Num - 1
+END
+
+
+
+DECLARE @i INT = 1
+WHILE (@i < 21)
+BEGIN
+    PRINT REPLICATE('* ', @i)
+    SET @i = @i + 1
+END
+
+
+#You are given two tables: Students and Grades. Students contains three columns ID, Name and Marks.
+
+
+
+SELECT NAME, GRADE, NAME
+
+
+
+- The report
+SELECT 
+CASE WHEN G.Grade<8 THEN NULL 
+ELSE S.Name END AS Name, 
+G.Grade, S.Marks 
+FROM Students S INNER JOIN Grades G ON S.Marks BETWEEN G.Min_Mark and G.Max_Mark ORDER BY G.Grade DESC,Name,Marks
+
+
+
+
+
+
+
+
+
+SELECT CASE WHEN G.grade < 8 THEN NULL 
+ELSE G.grade END as name, G.grade, S.marks
+
+FROM student S INNER JOIN GRADES G ON S.marks BETWEEN G.Max_Mark and G.Min_Mark
+ORDER BY G.grade DESC,s.name, s.marks
+
+
+
+
+
+
+SELECT h.hacker_id, h.name
+    FROM submissions s
+    inner JOIN challenges c
+        ON s.challenge_id = c.challenge_id
+    inner JOIN difficulty d
+        ON c.difficulty_level = d.difficulty_level 
+    inner JOIN hackers h
+        ON s.hacker_id = h.hacker_id
+    WHERE s.score = d.score 
+        AND c.difficulty_level = d.difficulty_level
+    GROUP BY h.hacker_id, h.name
+        HAVING COUNT(s.hacker_id) > 1
+    ORDER BY COUNT(s.hacker_id) DESC, h.hacker_id ASC
+    
+    
+
+
+
+--
+
+SELECT H.hacker_id, H.name
+
+FROM Hackers H
+INNER JOIN CHALLENGES C
+    ON H.hacker_id = C.hacker_id
+INNER JOIN Submission S
+    ON S.Challenge_id = C.Challenge_id
+INNER JOIN Difficulty D
+    on D.difficulty_level = C.difficulty_level
+    where S.score = D.score 
+    and C.difficulty_level = D.difficulty_level
+COUNT(s.submission_id)
+ORDER BY H.name DESC, h.hacker_id ASC
+
+
+
+/*
+Enter your query here.
+Please append a semicolon ";" at the end of the query and enter your query in a single line to avoid error.
+*/
+
+SELECT H.hacker_id, H.name
+FROM Hackers H
+INNER JOIN CHALLENGES C
+    ON H.hacker_id = C.hacker_id
+INNER JOIN Submissions S
+    ON S.Challenge_id = C.Challenge_id
+INNER JOIN Difficulty D
+    on D.difficulty_level = C.difficulty_level        
+where S.score = D.score 
+    and C.difficulty_level = D.difficulty_level
+        
+-- Query can work before this line.
+                
+GROUP BY H.hacker_id, H.name 
+HAVING COUNT(H.hacker_id) > 1
+ORDER BY COUNT(H.hacker_id) DESC, H.hacker_id ASC
+
+
+
+
+
+
+
